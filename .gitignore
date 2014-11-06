@@ -1,0 +1,7 @@
+# Build target
+target/
+
+# Trash
+.DS_Store
+._.DS_Store
+[T|t]humbs.db
