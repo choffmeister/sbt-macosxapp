@@ -26,5 +26,5 @@ object Build extends sbt.Build {
     .settings(
       name := "sbt-macosxapp",
       organization := "de.choffmeister",
-      version := "0.0.1-SNAPSHOT")
+      version := "0.0.1")
 }
