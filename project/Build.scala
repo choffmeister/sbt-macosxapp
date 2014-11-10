@@ -18,13 +18,37 @@ object Build extends sbt.Build {
     },
     credentials += Credentials(Path.userHome / ".ivy2" / ".credentials"))
 
+  lazy val mavenInfos = {
+    <url>https://github.com/choffmeister/sbt-macosxapp</url>
+    <licenses>
+      <license>
+        <name>MIT</name>
+        <url>http://opensource.org/licenses/MIT</url>
+      </license>
+    </licenses>
+    <scm>
+      <url>github.com/choffmeister/sbt-macosxapp.git</url>
+      <connection>scm:git:github.com/choffmeister/sbt-macosxapp.git</connection>
+      <developerConnection>scm:git:git@github.com:choffmeister/sbt-macosxapp.git</developerConnection>
+    </scm>
+    <developers>
+      <developer>
+        <id>choffmeister</id>
+        <name>Christian Hoffmeister</name>
+        <url>http://choffmeister.de/</url>
+      </developer>
+    </developers> }
+
   lazy val root = (project in file("."))
     .settings(Defaults.defaultSettings: _*)
     .settings(buildSettings: _*)
     .settings(publishSettings: _*)
+    .settings(pomExtra := mavenInfos)
     .settings(addSbtPlugin("de.choffmeister" % "sbt-jars" % "0.0.1"))
     .settings(
       name := "sbt-macosxapp",
       organization := "de.choffmeister",
+      organizationName := "Christian Hoffmeister",
+      organizationHomepage := Some(new URL("http://choffmeister.de/")),
       version := "0.0.1")
 }
