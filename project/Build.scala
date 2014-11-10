@@ -22,6 +22,7 @@ object Build extends sbt.Build {
     .settings(Defaults.defaultSettings: _*)
     .settings(buildSettings: _*)
     .settings(publishSettings: _*)
+    .settings(addSbtPlugin("de.choffmeister" % "sbt-jars" % "0.0.1"))
     .settings(
       name := "sbt-macosxapp",
       organization := "de.choffmeister",

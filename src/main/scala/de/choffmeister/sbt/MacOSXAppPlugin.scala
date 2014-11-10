@@ -2,6 +2,7 @@ package de.choffmeister.sbt
 
 import sbt._
 import sbt.Keys._
+import de.choffmeister.sbt.JarsPlugin._
 
 object MacOSXAppPlugin extends Plugin {
   val macosxAppName = SettingKey[String]("macosxAppName")
@@ -14,13 +15,13 @@ object MacOSXAppPlugin extends Plugin {
   val macosxAppJavaJars = TaskKey[Seq[File]]("macosxAppJavaJars")
   val macosxAppPackage = TaskKey[File]("macosxAppPackage")
 
-  lazy val macosxAppSettings = Seq[Def.Setting[_]](
+  lazy val macosxAppSettings = jarsSettings ++ Seq[Def.Setting[_]](
     macosxAppName := name.value,
     macosxAppTarget := target.value / (macosxAppName.value + ".app"),
     macosxAppHighResolution := true,
     macosxAppJavaJVMOptions := Seq.empty,
     macosxAppIcon := None,
-    macosxAppJavaJars := Seq.empty,
+    macosxAppJavaJars := jarsAll.value.map(_._1),
     macosxAppPackage := {
       val appTarget = macosxAppTarget.value
       val contentTarget = appTarget / "Contents"
